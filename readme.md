@@ -18,12 +18,12 @@ Abra um terminal na raiz deste projeto e execute o seguinte comando:
 
 No Windows:
 
-`python -m venv . `
+`python -m venv .venv`
 
 
 No macOS ou Linux:
 
-`python3 -m venv .`
+`python3 -m venv .venv`
 
 
 Isto irá criar uma pasta chamada venv no diretório do seu projeto.
@@ -44,7 +44,7 @@ No Windows (PowerShell):
 
 No macOS ou Linux:
 
-`source venv/bin/activate`
+`source .venv/bin/activate`
 
 
 Após a ativação, deverá ver (venv) no início da linha do seu terminal.
