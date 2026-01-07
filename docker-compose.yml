@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  db_warehouse:
+    image: postgres:15-alpine
+    container_name: db_warehouse
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - bi_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  etl_job:
+    build: ./etl
+    container_name: etl_job
+    depends_on:
+      db_warehouse:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db_warehouse:5432/${POSTGRES_DB}
+    volumes:
+      - ./data:/data
+      - ./models:/models
+    networks:
+      - bi_network
+
+  app_dashboard:
+    build: ./dashboard
+    container_name: app_dashboard
+    depends_on:
+      db_warehouse:
+        condition: service_healthy
+    ports:
+      - "8501:8501"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db_warehouse:5432/${POSTGRES_DB}
+    volumes:
+      - ./models:/models
+    networks:
+      - bi_network
+
+networks:
+  bi_network:
+    driver: bridge
+
+volumes:
+  pgdata:
