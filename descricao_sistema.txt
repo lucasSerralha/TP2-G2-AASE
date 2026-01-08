@@ -1,0 +1,50 @@
+# Descrição do Sistema: Mental Health Analytics Pro
+
+## Visão Geral
+O **Mental Health Analytics Pro** é uma plataforma de análise de dados e simulação preditiva desenvolvida para auxiliar profissionais de saúde mental. O sistema utiliza algoritmos de Machine Learning para prever níveis de estresse e qualidade do sono com base em hábitos diários e dados demográficos, permitindo um acompanhamento personalizado dos pacientes.
+
+## Estrutura do Projeto (Metodologia CRISP-DM)
+O projeto foi reestruturado seguindo as melhores práticas da metodologia CRISP-DM (Cross-Industry Standard Process for Data Mining):
+
+*   **`data/`**: Armazenamento de dados brutos e persistência de dados dos pacientes (`patients.json`).
+*   **`docs/`**: Documentação do projeto.
+*   **`notebooks/`**: Notebooks Jupyter para as fases de Entendimento dos Dados, Preparação e Modelagem.
+*   **`src/`**: Código fonte da aplicação, dividido em:
+    *   `dashboard/`: Aplicação web (Streamlit).
+    *   `etl/`: Pipelines de extração e transformação de dados.
+    *   `utils/`: Scripts utilitários.
+*   **`models/`**: Modelos de Machine Learning serializados (`.pkl`).
+
+## Funcionalidades do Dashboard
+
+### 1. Autenticação e Segurança
+*   **Tela de Login**: Acesso restrito a profissionais autorizados (Credenciais padrão: `admin`/`admin`).
+*   **Proteção de Dados**: O sistema garante que apenas usuários autenticados possam visualizar ou manipular dados de pacientes.
+
+### 2. Gestão de Pacientes
+*   **Cadastro de Pacientes**: Formulário para adicionar novos pacientes com informações demográficas (Nome, Idade, Gênero, Ocupação).
+*   **Listagem e Histórico**: Visualização de todos os pacientes cadastrados. Cada paciente possui um histórico detalhado de todas as simulações realizadas, permitindo acompanhar a evolução do estresse e qualidade do sono ao longo do tempo.
+*   **Persistência**: Os dados são salvos localmente em formato JSON, garantindo que as informações não sejam perdidas ao reiniciar a aplicação.
+
+### 3. Simulador Clínico (AI Simulator)
+*   **Simulação Contextual**: Permite rodar simulações específicas para um paciente selecionado, preenchendo automaticamente seus dados demográficos.
+*   **Predição em Tempo Real**: Utiliza modelos de Machine Learning para estimar:
+    *   Nível de Estresse (0-10).
+    *   Qualidade do Sono (1-5).
+*   **Cenários "E se?"**: O profissional pode ajustar variáveis comportamentais (tempo de tela, exercício, horas de sono) para ver como mudanças de hábito impactariam a saúde mental do paciente.
+*   **Salvamento de Resultados**: Os resultados da simulação podem ser salvos diretamente no histórico do paciente.
+
+### 4. Dashboard Analytics
+*   **Filtros Dinâmicos**: Barra lateral inteligente que permite ao usuário escolher quais variáveis categóricas deseja usar como filtro (ex: filtrar por Gênero, Ocupação, Modo de Trabalho, etc.).
+*   **KPIs (Indicadores Chave)**: Métricas globais sobre a base de dados, incluindo média de estresse, sono e índice de bem-estar.
+*   **Visualizações Interativas**: Gráficos correlacionando ocupação com estresse, idade com sono, entre outros, atualizados em tempo real conforme os filtros aplicados.
+
+### 5. Insights e Relatórios
+*   **Comparativo de Perfil**: Compara os dados da população geral com um "Perfil Ideal" (baixo estresse e boa qualidade de sono).
+*   **Recomendações**: Gera insights automáticos sobre como os hábitos do paciente divergem do perfil ideal.
+
+## Tecnologias Utilizadas
+*   **Frontend/Backend**: Streamlit (Python).
+*   **Machine Learning**: Scikit-learn (Modelos de Regressão e Classificação).
+*   **Visualização**: Plotly Express.
+*   **Containerização**: Docker e Docker Compose.

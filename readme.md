@@ -60,17 +60,30 @@ O pip irá descarregar e instalar automaticamente todas as dependências listada
 
 Como Executar o Código
 
-Depois da instalação estar concluída, pode executar o código do projeto que se encontra na pasta source.
+Depois da instalação estar concluída, pode executar o código do projeto que se encontra na pasta `notebooks` ou `src`.
 
 # Certifique-se que o seu venv está ativo
 `jupyter lab`
 
 Este comando irá abrir automaticamente uma nova janela no seu navegador de internet.
 
-No navegador, clique na pasta source/.
+No navegador, clique na pasta `notebooks/`.
 
-Clique no ficheiro main.ipynb para o abrir.
+Clique no ficheiro `1. Data Understanding.ipynb` para o abrir.
 Pode agora executar cada célula de código dentro do notebook.
+
+## Estrutura do Projeto (CRISP-DM)
+
+- `data/`: Armazenamento de dados.
+- `docs/`: Documentação do projeto (ex: ProjectPlan.pdf).
+- `notebooks/`: Jupyter notebooks para exploração e modelagem (Data Understanding, Preparation, Modeling).
+- `src/`: Código fonte da aplicação.
+  - `etl/`: Pipeline de extração, transformação e carga.
+  - `dashboard/`: Aplicação de dashboard.
+  - `utils/`: Scripts utilitários.
+- `models/`: Modelos serializados (.pkl).
+- `.venv/`: Ambiente virtual.
+- `docker-compose.yml`: Orquestração de containers.
 
 
 4. Desativar o Ambiente Virtual

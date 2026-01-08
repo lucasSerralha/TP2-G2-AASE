@@ -1,0 +1,63 @@
+[
+    {
+        "name": "Lucas Peres",
+        "age": 25,
+        "gender": "Male",
+        "occupation": "Employed",
+        "id": "9e73ee2d-3810-402e-80e5-359e445a2961",
+        "created_at": "2026-01-07T16:46:35.264616",
+        "history": [
+            {
+                "stress_level_0_10": 8.518100935951303,
+                "sleep_quality_1_5": 2.6174921762487307,
+                "screen_time_hours": 12.02,
+                "sleep_hours": 9.0,
+                "work_mode": "Remote",
+                "productivity_0_100": 60.0,
+                "exercise_minutes_per_week": 600.0,
+                "social_hours_per_week": 7.0,
+                "timestamp": "2026-01-07T16:47:22.609264"
+            },
+            {
+                "stress_level_0_10": 6.137480086979582,
+                "sleep_quality_1_5": 1.8588357686012529,
+                "screen_time_hours": 8.0,
+                "timestamp": "2026-01-07T17:29:24.933804"
+            },
+            {
+                "stress_level_0_10": 1.7981507452836987,
+                "sleep_quality_1_5": 3.177967049380057,
+                "screen_time_hours": 8.0,
+                "timestamp": "2026-01-07T17:30:42.144008"
+            }
+        ]
+    },
+    {
+        "name": "Helena Rodrigues",
+        "age": 23,
+        "gender": "Female",
+        "occupation": "Student",
+        "id": "8c9c53bd-4f4c-4549-88cc-238cb5d3e95f",
+        "created_at": "2026-01-07T18:03:53.002143",
+        "history": [
+            {
+                "stress_level_0_10": 5.828686739911275,
+                "sleep_quality_1_5": 2.7280450240329044,
+                "screen_time_hours": 8.0,
+                "timestamp": "2026-01-07T18:04:05.169493"
+            },
+            {
+                "stress_level_0_10": 6.117692557842053,
+                "sleep_quality_1_5": 1.8370745321372108,
+                "screen_time_hours": 8.0,
+                "timestamp": "2026-01-07T18:05:02.528285"
+            },
+            {
+                "stress_level_0_10": 6.117692557842053,
+                "sleep_quality_1_5": 1.8370745321372108,
+                "screen_time_hours": 8.0,
+                "timestamp": "2026-01-07T18:52:43.632407"
+            }
+        ]
+    }
+]

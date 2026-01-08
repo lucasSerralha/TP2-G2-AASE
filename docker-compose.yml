@@ -19,7 +19,7 @@ services:
       retries: 5
 
   etl_job:
-    build: ./etl
+    build: ./src/etl
     container_name: etl_job
     depends_on:
       db_warehouse:
@@ -33,7 +33,7 @@ services:
       - bi_network
 
   app_dashboard:
-    build: ./dashboard
+    build: ./src/dashboard
     container_name: app_dashboard
     depends_on:
       db_warehouse:
@@ -44,6 +44,7 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db_warehouse:5432/${POSTGRES_DB}
     volumes:
       - ./models:/models
+      - ./data:/data
     networks:
       - bi_network
 
