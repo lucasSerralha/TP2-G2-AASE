@@ -220,8 +220,25 @@ def load_data():
     df_db = pd.DataFrame()
     if engine:
         try:
-            df_db = pd.read_sql("SELECT * FROM mental_health_data", engine)
-        except:
+            # Query Star Schema and reconstruct flat view
+            query = """
+            SELECT 
+                f.*,
+                u.age, u.gender,
+                o.occupation_name as occupation,
+                w.work_mode_name as work_mode
+            FROM fact_mental_health f
+            JOIN dim_user u ON f.user_id = u.user_id
+            JOIN dim_occupation o ON f.occupation_id = o.occupation_id
+            JOIN dim_work_mode w ON f.work_mode_id = w.work_mode_id
+            """
+            df_db = pd.read_sql(query, engine)
+            
+            # Drop ID columns not needed for analysis if desired, or keep them.
+            # The app expects 'occupation' and 'work_mode' strings, which we aliased above.
+            # We might want to drop the foreign keys to clean up, but it's not strictly necessary.
+        except Exception as e:
+            st.error(f"Erro ao carregar dados do banco: {e}")
             pass
     
     pm = PatientManager(PATIENTS_FILE)

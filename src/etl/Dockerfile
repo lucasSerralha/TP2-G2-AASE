@@ -6,5 +6,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY etl_pipeline.py .
+COPY init.sql .
 
 CMD ["python", "etl_pipeline.py"]

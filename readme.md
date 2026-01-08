@@ -91,3 +91,33 @@ Pode agora executar cada célula de código dentro do notebook.
 Quando terminar de trabalhar no projeto, pode desativar o ambiente virtual simplesmente executando no terminal:
 
 `deactivate`
+
+## Verificação do Data Warehouse (Star Schema)
+
+Para verificar se a migração para o Star Schema foi bem-sucedida, você pode conectar-se ao banco de dados e executar as seguintes consultas:
+
+1.  **Aceder ao container do banco de dados:**
+    ```bash
+    docker exec -it db_warehouse psql -U user -d mental_health
+    ```
+
+2.  **Listar as tabelas (deve ver `fact_mental_health`, `dim_user`, `dim_occupation`, `dim_work_mode`):**
+    ```sql
+    \dt
+    ```
+
+3.  **Verificar contagem de registos na tabela de fatos:**
+    ```sql
+    SELECT COUNT(*) FROM fact_mental_health;
+    ```
+
+4.  **Exemplo de consulta analítica (Média de Stress por Ocupação):**
+    ```sql
+    SELECT 
+        o.occupation_name,
+        AVG(f.stress_level_0_10) as avg_stress
+    FROM fact_mental_health f
+    JOIN dim_occupation o ON f.occupation_id = o.occupation_id
+    GROUP BY o.occupation_name
+    ORDER BY avg_stress DESC;
+    ```

@@ -29,6 +29,12 @@
                 "sleep_quality_1_5": 3.177967049380057,
                 "screen_time_hours": 8.0,
                 "timestamp": "2026-01-07T17:30:42.144008"
+            },
+            {
+                "stress_level_0_10": 2.779399996359418,
+                "sleep_quality_1_5": 2.7617084500773115,
+                "screen_time_hours": 6.48,
+                "timestamp": "2026-01-08T15:16:27.442985"
             }
         ]
     },
