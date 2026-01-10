@@ -324,12 +324,25 @@ def render_dashboard(df):
     sel_gender = st.sidebar.multiselect("Gênero", all_genders, default=all_genders)
     sel_occ = st.sidebar.multiselect("Ocupação", all_occs, default=all_occs)
     sel_mode = st.sidebar.multiselect("Modo de Trabalho", all_modes, default=all_modes)
+
+    if 'age' in df.columns:
+        min_age = int(df['age'].min())
+        max_age = int(df['age'].max())
+        sel_age = st.sidebar.slider(
+            "Faixa Etária", 
+            min_value=min_age, 
+            max_value=max_age, 
+            value=(min_age, max_age),
+            step=1
+        )
     
     # Apply Filters
     mask = pd.Series(True, index=df.index)
     if sel_gender: mask &= df['gender'].isin(sel_gender)
     if sel_occ: mask &= df['occupation'].isin(sel_occ)
     if sel_mode: mask &= df['work_mode'].isin(sel_mode)
+    if 'age' in df.columns:
+        mask &= (df['age'] >= sel_age[0]) & (df['age'] <= sel_age[1])
     
     df_filtered = df[mask]
     
